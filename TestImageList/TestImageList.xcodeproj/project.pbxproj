@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17C4ED5520B3506B704D7782 /* Pods_TestImageList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDB3959A1AD8D64DB65A58E /* Pods_TestImageList.framework */; };
 		EC26B1D022AA8F1B009628B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC26B1CF22AA8F1B009628B8 /* AppDelegate.swift */; };
 		EC26B1D222AA8F1B009628B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC26B1D122AA8F1B009628B8 /* ViewController.swift */; };
 		EC26B1D522AA8F1B009628B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC26B1D322AA8F1B009628B8 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0AE039870047C3951E8A6B0D /* Pods-TestImageList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestImageList.release.xcconfig"; path = "Target Support Files/Pods-TestImageList/Pods-TestImageList.release.xcconfig"; sourceTree = "<group>"; };
 		EC26B1CC22AA8F1B009628B8 /* TestImageList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestImageList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC26B1CF22AA8F1B009628B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC26B1D122AA8F1B009628B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +49,8 @@
 		EC26B1EB22AA8F1D009628B8 /* TestImageListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestImageListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC26B1EF22AA8F1D009628B8 /* TestImageListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestImageListUITests.swift; sourceTree = "<group>"; };
 		EC26B1F122AA8F1D009628B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC2D231D2A34105584CD571A /* Pods-TestImageList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestImageList.debug.xcconfig"; path = "Target Support Files/Pods-TestImageList/Pods-TestImageList.debug.xcconfig"; sourceTree = "<group>"; };
+		FFDB3959A1AD8D64DB65A58E /* Pods_TestImageList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestImageList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17C4ED5520B3506B704D7782 /* Pods_TestImageList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +79,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3DF283871F35DB149EDDC26F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EC2D231D2A34105584CD571A /* Pods-TestImageList.debug.xcconfig */,
+				0AE039870047C3951E8A6B0D /* Pods-TestImageList.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D80AB703190E22820FCABEFF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FFDB3959A1AD8D64DB65A58E /* Pods_TestImageList.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EC26B1C322AA8F1B009628B8 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +104,8 @@
 				EC26B1E322AA8F1D009628B8 /* TestImageListTests */,
 				EC26B1EE22AA8F1D009628B8 /* TestImageListUITests */,
 				EC26B1CD22AA8F1B009628B8 /* Products */,
+				3DF283871F35DB149EDDC26F /* Pods */,
+				D80AB703190E22820FCABEFF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,9 +157,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC26B1F422AA8F1D009628B8 /* Build configuration list for PBXNativeTarget "TestImageList" */;
 			buildPhases = (
+				651EDAF9905C1359D131820A /* [CP] Check Pods Manifest.lock */,
 				EC26B1C822AA8F1B009628B8 /* Sources */,
 				EC26B1C922AA8F1B009628B8 /* Frameworks */,
 				EC26B1CA22AA8F1B009628B8 /* Resources */,
+				72E5D3168375226073AC8932 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -250,6 +277,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		651EDAF9905C1359D131820A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TestImageList-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		72E5D3168375226073AC8932 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TestImageList/Pods-TestImageList-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestImageList/Pods-TestImageList-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EC26B1C822AA8F1B009628B8 /* Sources */ = {
@@ -430,6 +504,7 @@
 		};
 		EC26B1F522AA8F1D009628B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC2D231D2A34105584CD571A /* Pods-TestImageList.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -447,6 +522,7 @@
 		};
 		EC26B1F622AA8F1D009628B8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AE039870047C3951E8A6B0D /* Pods-TestImageList.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
