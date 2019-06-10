@@ -18,6 +18,8 @@
 		EC26B1FE22AA9942009628B8 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC26B1FD22AA9942009628B8 /* DataModel.swift */; };
 		EC26B20122AAADCC009628B8 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC26B20022AAADCC009628B8 /* UserCell.swift */; };
 		ECFAAE4C22AE548D0038E55F /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAAE4B22AE548D0038E55F /* ApiClient.swift */; };
+		ECFAAE4F22AE87BC0038E55F /* UsersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAAE4E22AE87BC0038E55F /* UsersData.swift */; };
+		ECFAAE5122AE87D60038E55F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAAE5022AE87D60038E55F /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		EC26B20022AAADCC009628B8 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		EC2D231D2A34105584CD571A /* Pods-TestImageList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestImageList.debug.xcconfig"; path = "Target Support Files/Pods-TestImageList/Pods-TestImageList.debug.xcconfig"; sourceTree = "<group>"; };
 		ECFAAE4B22AE548D0038E55F /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		ECFAAE4E22AE87BC0038E55F /* UsersData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersData.swift; sourceTree = "<group>"; };
+		ECFAAE5022AE87D60038E55F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FFDB3959A1AD8D64DB65A58E /* Pods_TestImageList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestImageList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -127,13 +131,13 @@
 		EC26B1CE22AA8F1B009628B8 /* TestImageList */ = {
 			isa = PBXGroup;
 			children = (
+				ECFAAE4D22AE879F0038E55F /* DataModel */,
 				EC26B1CF22AA8F1B009628B8 /* AppDelegate.swift */,
 				EC26B1D122AA8F1B009628B8 /* ViewController.swift */,
 				EC26B1D322AA8F1B009628B8 /* Main.storyboard */,
 				EC26B1D622AA8F1D009628B8 /* Assets.xcassets */,
 				EC26B1D822AA8F1D009628B8 /* LaunchScreen.storyboard */,
 				EC26B1DB22AA8F1D009628B8 /* Info.plist */,
-				EC26B1FD22AA9942009628B8 /* DataModel.swift */,
 				EC26B20022AAADCC009628B8 /* UserCell.swift */,
 				ECFAAE4B22AE548D0038E55F /* ApiClient.swift */,
 			);
@@ -156,6 +160,16 @@
 				EC26B1F122AA8F1D009628B8 /* Info.plist */,
 			);
 			path = TestImageListUITests;
+			sourceTree = "<group>";
+		};
+		ECFAAE4D22AE879F0038E55F /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				EC26B1FD22AA9942009628B8 /* DataModel.swift */,
+				ECFAAE4E22AE87BC0038E55F /* UsersData.swift */,
+				ECFAAE5022AE87D60038E55F /* User.swift */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,11 +356,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECFAAE4F22AE87BC0038E55F /* UsersData.swift in Sources */,
 				EC26B20122AAADCC009628B8 /* UserCell.swift in Sources */,
 				EC26B1D222AA8F1B009628B8 /* ViewController.swift in Sources */,
 				EC26B1D022AA8F1B009628B8 /* AppDelegate.swift in Sources */,
 				EC26B1FE22AA9942009628B8 /* DataModel.swift in Sources */,
 				ECFAAE4C22AE548D0038E55F /* ApiClient.swift in Sources */,
+				ECFAAE5122AE87D60038E55F /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

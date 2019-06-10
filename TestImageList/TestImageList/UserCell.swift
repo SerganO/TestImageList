@@ -14,6 +14,8 @@ class UserCell: UITableViewCell {
     let userImage = UIImageView()
     let userName = UILabel()
     let imagesView = UIView()
+    
+    let offset = 10
     // MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -52,12 +54,27 @@ class UserCell: UITableViewCell {
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
             make.bottom.equalToSuperview().offset(-10)
+            update.height.equalTo(calculateHeight(10)).priority(999)
         }
+    }
+    
+    public func calculateHeight(_ count: Int) -> CGFloat {
+        var height: CGFloat = 0
+        if count % 2 == 0 {
+            height = ((contentView.frame.width / 2) - CGFloat(offset / 2)) * CGFloat((count / 2)) + offset * ((count / 2) - 1)
+        } else {
+            height = contentView.frame.width + (contentView.frame.width / 2) * CGFloat(((count - 1) / 2)) + offset * (((count - 1) / 2) - 1)
+        }
+        return height
     }
     
     public func configureImages(){
         let count = imagesView.subviews.count
         guard count > 0 else { return }
+        imagesView.snp.updateConstraints { (update) in
+            update.height.equalTo(calculateHeight(count)).priority(999)
+        }
+        
         if count % 2 == 0 {
             
             for (i,view) in imagesView.subviews.enumerated() {
