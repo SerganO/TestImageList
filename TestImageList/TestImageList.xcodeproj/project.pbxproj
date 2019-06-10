@@ -17,6 +17,7 @@
 		EC26B1F022AA8F1D009628B8 /* TestImageListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC26B1EF22AA8F1D009628B8 /* TestImageListUITests.swift */; };
 		EC26B1FE22AA9942009628B8 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC26B1FD22AA9942009628B8 /* DataModel.swift */; };
 		EC26B20122AAADCC009628B8 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC26B20022AAADCC009628B8 /* UserCell.swift */; };
+		ECFAAE4C22AE548D0038E55F /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAAE4B22AE548D0038E55F /* ApiClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		EC26B1FD22AA9942009628B8 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		EC26B20022AAADCC009628B8 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		EC2D231D2A34105584CD571A /* Pods-TestImageList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestImageList.debug.xcconfig"; path = "Target Support Files/Pods-TestImageList/Pods-TestImageList.debug.xcconfig"; sourceTree = "<group>"; };
+		ECFAAE4B22AE548D0038E55F /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		FFDB3959A1AD8D64DB65A58E /* Pods_TestImageList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestImageList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -133,6 +135,7 @@
 				EC26B1DB22AA8F1D009628B8 /* Info.plist */,
 				EC26B1FD22AA9942009628B8 /* DataModel.swift */,
 				EC26B20022AAADCC009628B8 /* UserCell.swift */,
+				ECFAAE4B22AE548D0038E55F /* ApiClient.swift */,
 			);
 			path = TestImageList;
 			sourceTree = "<group>";
@@ -315,12 +318,18 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TestImageList/Pods-TestImageList-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +348,7 @@
 				EC26B1D222AA8F1B009628B8 /* ViewController.swift in Sources */,
 				EC26B1D022AA8F1B009628B8 /* AppDelegate.swift in Sources */,
 				EC26B1FE22AA9942009628B8 /* DataModel.swift in Sources */,
+				ECFAAE4C22AE548D0038E55F /* ApiClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

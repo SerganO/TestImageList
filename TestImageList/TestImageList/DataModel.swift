@@ -20,9 +20,9 @@ class usersData: Codable {
 }
 
 class user: Codable {
-    var name:String? = ""
-    var image:String? = ""
-    var items = [String?]()
+    var name:String = ""
+    var image:String = ""
+    var items = [String]()
 }
 
 /*class item: Codable {

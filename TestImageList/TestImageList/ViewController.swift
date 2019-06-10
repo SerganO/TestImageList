@@ -10,79 +10,74 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    let limit = 10
+    let offset = 0
     let tableView = UITableView()
     var CurrentData: DataModel?
-    let urlString = URL(string: "http://sd2-hiring.herokuapp.com/api/users?offset=10&limit=10")
-    typealias SearchComplete = (Bool) -> Void
+    var urlString:URL {
+        get {
+            return URL(string: "http://sd2-hiring.herokuapp.com/api/users?offset=\(offset)&limit=\(limit)")!
+        }
+    }
+    
     let cellIdentifier = "userInfo"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData(urlString) { (success) in
-            
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
-        
-        
-    }
-    
-    
-    public func getData(_ url : URL?, completion: @escaping SearchComplete ) {
-        if let url = url {
-            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                var success = false
-                if let httpResponce = response as? HTTPURLResponse{
-                    print(httpResponce.statusCode)
-                }
-                
-                if error != nil {
-                    print(error)
-                } else {
-                    if let usableData = data {
-                        print(usableData)
-                        self.CurrentData = self.parse(data: usableData)
-                        if self.CurrentData != nil {
-                            success = true
-                        }
-                        completion(success)
-                    }
-                }
+        configureTableView()
+        DispatchQueue.main.async {
+            ApiClient.getData(self.urlString) { (success) in
+                self.CurrentData = ApiClient.CurrentData
+                self.reloadTableView()
             }
-            task.resume()
-        }
-        
-    }
-    
-    private func parse(data: Data) -> DataModel?
-    {
-        do
-        {
-            let decoder = JSONDecoder()
-            let result = try decoder.decode(DataModel.self, from: data)
-            return result
-        }
-        catch
-        {
-            print("JSON Error: \(error)")
-            return nil
         }
     }
-    
+   
+    func reloadTableView() {
+        tableView.reloadData()
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return CurrentData?.data.users.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! UserCell
+        
+        if let data = CurrentData {
+            let user = data.data.users[indexPath.row]
+            cell.userImage.loadImage(url: URL(string: user.image))
+            cell.userName.text = data.data.users[indexPath.row].name
+            cell.imagesView.subviews.forEach({ $0.removeFromSuperview() }) // this gets things done
+            //cell.imagesView.subviews.map({ $0.removeFromSuperview() }) // this returns modified array
+            for (i, _) in user.items.enumerated() {
+                //cell.imagesView.addSubview(UIImageView(image: UrlManager.downloadImage(from: URL(string: data.data.users[indexPath.row].items[i]))))
+                let imageView = UIImageView()
+                imageView.loadImage(url: URL(string: user.items[i]))
+                cell.imagesView.addSubview(imageView)
+        }
+            cell.configureImages()
+        }
+        
         return cell
     }
     
     
     func configureTableView() {
-        //tableView.register(AmslerTestDefectTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        tableView.rowHeight = 94
+        tableView.register(UserCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.contentMode = .scaleAspectFill
+        tableView.estimatedRowHeight = 300
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .none
     }
+   
     
     
 
