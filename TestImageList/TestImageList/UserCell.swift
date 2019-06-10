@@ -54,7 +54,7 @@ class UserCell: UITableViewCell {
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
             make.bottom.equalToSuperview().offset(-10)
-            make.height.equalTo(calculateHeight(10)).priority(999)
+            make.height.equalTo(calculateHeight(10)).priority(100)
         }
     }
     
@@ -77,7 +77,7 @@ class UserCell: UITableViewCell {
     public func configureCell() {
         let count = imagesView.subviews.count
         imagesView.snp.updateConstraints { (update) in
-            update.height.equalTo(calculateHeight(count)).priority(999)
+            update.height.equalTo(calculateHeight(count)).priority(100)
         }
         let isEven = count % 2 == 0
         var lastView = UIView()
@@ -126,8 +126,6 @@ class UserCell: UITableViewCell {
                 }
             }
         }
-        imagesView.subviews.last?.snp.makeConstraints({ (make) in
-            make.bottom.equalToSuperview()
-        })
+        
     }
 }
