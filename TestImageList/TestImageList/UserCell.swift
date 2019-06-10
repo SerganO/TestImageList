@@ -54,16 +54,20 @@ class UserCell: UITableViewCell {
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
             make.bottom.equalToSuperview().offset(-10)
-            update.height.equalTo(calculateHeight(10)).priority(999)
+            make.height.equalTo(calculateHeight(10)).priority(999)
         }
     }
     
     public func calculateHeight(_ count: Int) -> CGFloat {
         var height: CGFloat = 0
         if count % 2 == 0 {
-            height = ((contentView.frame.width / 2) - CGFloat(offset / 2)) * CGFloat((count / 2)) + offset * ((count / 2) - 1)
+            let imagePart = ((contentView.frame.width / 2) - CGFloat(offset / 2)) * CGFloat((count / 2))
+            let offsetPart = offset * ((count / 2) - 1)
+            height = imagePart + CGFloat(offsetPart)
         } else {
-            height = contentView.frame.width + (contentView.frame.width / 2) * CGFloat(((count - 1) / 2)) + offset * (((count - 1) / 2) - 1)
+            let imagePart = contentView.frame.width + (contentView.frame.width / 2) * CGFloat(((count - 1) / 2))
+            let offsetPart = offset * (((count - 1) / 2) - 1)
+            height = imagePart + CGFloat(offsetPart)
         }
         return height
     }
