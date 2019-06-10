@@ -20,6 +20,8 @@
 		ECFAAE4C22AE548D0038E55F /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAAE4B22AE548D0038E55F /* ApiClient.swift */; };
 		ECFAAE4F22AE87BC0038E55F /* UsersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAAE4E22AE87BC0038E55F /* UsersData.swift */; };
 		ECFAAE5122AE87D60038E55F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAAE5022AE87D60038E55F /* User.swift */; };
+		ECFAAE5322AE93880038E55F /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAAE5222AE93880038E55F /* UIImageViewExtension.swift */; };
+		ECFAAE5522AE948A0038E55F /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAAE5422AE948A0038E55F /* CacheManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		ECFAAE4B22AE548D0038E55F /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		ECFAAE4E22AE87BC0038E55F /* UsersData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersData.swift; sourceTree = "<group>"; };
 		ECFAAE5022AE87D60038E55F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		ECFAAE5222AE93880038E55F /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		ECFAAE5422AE948A0038E55F /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		FFDB3959A1AD8D64DB65A58E /* Pods_TestImageList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestImageList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -140,6 +144,8 @@
 				EC26B1DB22AA8F1D009628B8 /* Info.plist */,
 				EC26B20022AAADCC009628B8 /* UserCell.swift */,
 				ECFAAE4B22AE548D0038E55F /* ApiClient.swift */,
+				ECFAAE5222AE93880038E55F /* UIImageViewExtension.swift */,
+				ECFAAE5422AE948A0038E55F /* CacheManager.swift */,
 			);
 			path = TestImageList;
 			sourceTree = "<group>";
@@ -357,11 +363,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECFAAE4F22AE87BC0038E55F /* UsersData.swift in Sources */,
+				ECFAAE5522AE948A0038E55F /* CacheManager.swift in Sources */,
 				EC26B20122AAADCC009628B8 /* UserCell.swift in Sources */,
 				EC26B1D222AA8F1B009628B8 /* ViewController.swift in Sources */,
 				EC26B1D022AA8F1B009628B8 /* AppDelegate.swift in Sources */,
 				EC26B1FE22AA9942009628B8 /* DataModel.swift in Sources */,
 				ECFAAE4C22AE548D0038E55F /* ApiClient.swift in Sources */,
+				ECFAAE5322AE93880038E55F /* UIImageViewExtension.swift in Sources */,
 				ECFAAE5122AE87D60038E55F /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -60,12 +60,13 @@ class UserCell: UITableViewCell {
     
     public func calculateHeight(_ count: Int) -> CGFloat {
         var height: CGFloat = 0
+        let containerWidth = contentView.frame.width - 20
         if count % 2 == 0 {
-            let imagePart = ((contentView.frame.width / 2) - CGFloat(offset / 2)) * CGFloat((count / 2))
+            let imagePart = ((containerWidth / 2) - CGFloat(offset / 2)) * CGFloat((count / 2))
             let offsetPart = offset * ((count / 2) - 1)
             height = imagePart + CGFloat(offsetPart)
         } else {
-            let imagePart = contentView.frame.width + (contentView.frame.width / 2) * CGFloat(((count - 1) / 2))
+            let imagePart = containerWidth + (containerWidth / 2) * CGFloat(((count - 1) / 2))
             let offsetPart = offset * (((count - 1) / 2) - 1)
             height = imagePart + CGFloat(offsetPart)
         }

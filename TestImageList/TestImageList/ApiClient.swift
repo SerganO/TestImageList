@@ -38,13 +38,4 @@ class ApiClient {
     
 }
 
-extension UIImageView {
-    func loadImage(url: URL?) {
-        guard let url = url else { return }
-        Alamofire.request(url).responseImage { (response) in
-            if let image = response.result.value {
-                self.image = image
-            }
-        }
-    }
-}
+
