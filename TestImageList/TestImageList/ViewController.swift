@@ -7,13 +7,16 @@
 //
 
 import UIKit
+typealias SearchComplete = (Bool) -> Void
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
 
+    var loadMoreStatus = true
     let limit = 10
-    let offset = 0
+    var offset = 0
     let tableView = UITableView()
     var CurrentData: DataModel?
+    var allUsersData: [user]?
     var urlString:URL {
         get {
             return URL(string: "http://sd2-hiring.herokuapp.com/api/users?offset=\(offset)&limit=\(limit)")!
@@ -35,29 +38,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         DispatchQueue.main.async {
             ApiClient.getData(self.urlString) { (success) in
                 self.CurrentData = ApiClient.CurrentData
+                self.allUsersData = self.CurrentData?.data.users
                 self.reloadTableView()
+                self.loadMoreStatus = false
             }
         }
+        
     }
    
     func reloadTableView() {
         tableView.reloadData()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CurrentData?.data.users.count ?? 0
+        return allUsersData?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! UserCell
         
-        if let data = CurrentData {
-            let user = data.data.users[indexPath.row]
+        //let cell = UserCell()
+        
+        if let data = allUsersData {
+            let user = data[indexPath.row]
             cell.userImage.loadImage(url: URL(string: user.image))
-            cell.userName.text = data.data.users[indexPath.row].name
-            cell.imagesView.subviews.forEach({ $0.removeFromSuperview() }) // this gets things done
-            //cell.imagesView.subviews.map({ $0.removeFromSuperview() }) // this returns modified array
+            cell.userName.text = user.name
+            cell.imagesView.subviews.forEach({ $0.removeFromSuperview() })
             for (i, _) in user.items.enumerated() {
-                //cell.imagesView.addSubview(UIImageView(image: UrlManager.downloadImage(from: URL(string: data.data.users[indexPath.row].items[i]))))
                 let imageView = UIImageView()
                 imageView.loadImage(url: URL(string: user.items[i]))
                 cell.imagesView.addSubview(imageView)
@@ -76,6 +82,39 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.rowHeight = UITableView.automaticDimension
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        let deltaOffset = maximumOffset - currentOffset
+        
+        if deltaOffset <= 0 {
+            loadMore()
+        }
+    }
+    
+    func loadMore() {
+        if !loadMoreStatus && CurrentData?.data.has_more ?? false {
+            offset = offset + limit
+            loadMoreBegin()
+        }
+    }
+    
+    func loadMoreBegin() {
+        loadMoreStatus = true
+        DispatchQueue.main.async {
+            ApiClient.getData(self.urlString) { (success) in
+                self.CurrentData = ApiClient.CurrentData
+                for (_,elem) in (self.CurrentData?.data.users.enumerated())! {
+                    self.allUsersData?.append(elem)
+                }
+                self.loadMoreStatus = false
+                self.reloadTableView()
+            }
+        }
     }
    
     

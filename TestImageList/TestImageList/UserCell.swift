@@ -66,7 +66,7 @@ class UserCell: UITableViewCell {
                     view.snp.makeConstraints { (make) in
                         make.top.equalToSuperview()
                         make.leading.equalToSuperview()
-                        make.width.equalToSuperview().multipliedBy(0.5)
+                        make.width.equalToSuperview().multipliedBy(0.5).offset(-5)
                         make.height.equalTo(view.snp.width)
                     }
                     break
@@ -74,26 +74,24 @@ class UserCell: UITableViewCell {
                     view.snp.makeConstraints { (make) in
                         make.top.equalToSuperview()
                         make.trailing.equalToSuperview()
-                        make.width.equalToSuperview().multipliedBy(0.5)
+                        make.width.equalToSuperview().multipliedBy(0.5).offset(-5)
                         make.height.equalTo(view.snp.width)
                     }
                     break
                 default:
-                    if i % 2 == 0 {
-                        view.snp.makeConstraints { (make) in
-                            make.top.equalTo(imagesView.subviews[i-2].snp.bottom)
+                    view.snp.makeConstraints { (make) in
+                        make.top.equalTo(imagesView.subviews[i-2].snp.bottom).offset(10)
+                        
+                        make.width.equalToSuperview().multipliedBy(0.5).offset(-5)
+                        make.height.equalTo(view.snp.width)
+                        
+                        if i % 2 == 0 {
                             make.trailing.equalToSuperview()
-                            make.width.equalToSuperview().multipliedBy(0.5)
-                            make.height.equalTo(view.snp.width)
-                        }
-                    } else {
-                        view.snp.makeConstraints { (make) in
-                            make.top.equalTo(imagesView.subviews[i-2].snp.bottom)
+                        } else {
                             make.leading.equalToSuperview()
-                            make.width.equalToSuperview().multipliedBy(0.5)
-                            make.height.equalTo(view.snp.width)
                         }
                     }
+                    
                     break
                 }
             }
@@ -112,26 +110,24 @@ class UserCell: UITableViewCell {
                     break
                 case 1:
                     view.snp.makeConstraints { (make) in
-                        make.top.equalTo(imagesView.subviews[i - 1].snp.bottom)
-                        make.trailing.equalToSuperview()
-                        make.width.equalToSuperview().multipliedBy(0.5)
+                        make.top.equalTo(imagesView.subviews[i-1].snp.bottom).offset(10)
+                        
+                        make.width.equalToSuperview().multipliedBy(0.5).offset(-5)
                         make.height.equalTo(view.snp.width)
+                        make.trailing.equalToSuperview()
                     }
                     break
                 default:
-                    if (i - 1) % 2 == 0 {
-                        view.snp.makeConstraints { (make) in
-                            make.top.equalTo(imagesView.subviews[i-2].snp.bottom)
+                    view.snp.makeConstraints { (make) in
+                        make.top.equalTo(imagesView.subviews[i-2].snp.bottom).offset(10)
+                        
+                        make.width.equalToSuperview().multipliedBy(0.5).offset(-5)
+                        make.height.equalTo(view.snp.width)
+                        
+                        if (i - 1) % 2 == 0 {
                             make.trailing.equalToSuperview()
-                            make.width.equalToSuperview().multipliedBy(0.5)
-                            make.height.equalTo(view.snp.width)
-                        }
-                    } else {
-                        view.snp.makeConstraints { (make) in
-                            make.top.equalTo(imagesView.subviews[i-2].snp.bottom)
+                        } else {
                             make.leading.equalToSuperview()
-                            make.width.equalToSuperview().multipliedBy(0.5)
-                            make.height.equalTo(view.snp.width)
                         }
                     }
                     break
