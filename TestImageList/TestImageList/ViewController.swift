@@ -62,7 +62,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             imageView.loadImage(url: URL(string: user.items[i]))
             cell.imagesView.addSubview(imageView)
         }
-        cell.configureImages()
+        cell.configureCell()
         return cell
     }
     

@@ -60,7 +60,7 @@ class UserCell: UITableViewCell {
     
     public func calculateHeight(_ count: Int) -> CGFloat {
         var height: CGFloat = 0
-        let containerWidth = contentView.frame.width - 20
+        let containerWidth = imagesView.frame.width
         if count % 2 == 0 {
             let imagePart = ((containerWidth / 2) - CGFloat(offset / 2)) * CGFloat((count / 2))
             let offsetPart = offset * ((count / 2) - 1)
@@ -73,93 +73,61 @@ class UserCell: UITableViewCell {
         return height
     }
     
-    public func configureImages(){
+    
+    public func configureCell() {
         let count = imagesView.subviews.count
-        guard count > 0 else { return }
         imagesView.snp.updateConstraints { (update) in
             update.height.equalTo(calculateHeight(count)).priority(999)
         }
-        
-        if count % 2 == 0 {
-            
-            for (i,view) in imagesView.subviews.enumerated() {
-                switch i {
-                case 0:
+        let isEven = count % 2 == 0
+        var lastView = UIView()
+        for (i,view) in imagesView.subviews.enumerated() {
+            if i == 0 {
+                if isEven {
                     view.snp.makeConstraints { (make) in
                         make.top.equalToSuperview()
                         make.leading.equalToSuperview()
                         make.width.equalToSuperview().multipliedBy(0.5).offset(-5)
                         make.height.equalTo(view.snp.width)
                     }
-                    break
-                case 1:
-                    view.snp.makeConstraints { (make) in
-                        make.top.equalToSuperview()
-                        make.trailing.equalToSuperview()
-                        make.width.equalToSuperview().multipliedBy(0.5).offset(-5)
-                        make.height.equalTo(view.snp.width)
-                    }
-                    break
-                default:
-                    view.snp.makeConstraints { (make) in
-                        make.top.equalTo(imagesView.subviews[i-2].snp.bottom).offset(10)
-                        
-                        make.width.equalToSuperview().multipliedBy(0.5).offset(-5)
-                        make.height.equalTo(view.snp.width)
-                        
-                        if i % 2 == 0 {
-                            make.trailing.equalToSuperview()
-                        } else {
-                            make.leading.equalToSuperview()
-                        }
-                    }
-                    
-                    break
-                }
-            }
-            
-            
-        } else {
-            for (i,view) in imagesView.subviews.enumerated() {
-                switch i {
-                case 0:
+                } else {
                     view.snp.makeConstraints { (make) in
                         make.top.equalToSuperview()
                         make.leading.equalToSuperview()
                         make.width.equalToSuperview()
                         make.height.equalTo(view.snp.width)
                     }
-                    break
-                case 1:
-                    view.snp.makeConstraints { (make) in
-                        make.top.equalTo(imagesView.subviews[i-1].snp.bottom).offset(10)
-                        
-                        make.width.equalToSuperview().multipliedBy(0.5).offset(-5)
-                        make.height.equalTo(view.snp.width)
+                }
+                lastView = view
+            } else {
+                var isIndexEven = i % 2 == 0
+                if !isEven {
+                    isIndexEven = !isIndexEven
+                }
+                
+                
+                view.snp.makeConstraints { (make) in
+                   
+                    if isIndexEven {
+                        make.leading.equalToSuperview()
+                        make.top.equalTo(lastView.snp.bottom).offset(offset)
+                    } else {
                         make.trailing.equalToSuperview()
+                        make.top.equalTo(lastView)
                     }
-                    break
-                default:
-                    view.snp.makeConstraints { (make) in
-                        make.top.equalTo(imagesView.subviews[i-2].snp.bottom).offset(10)
-                        
-                        make.width.equalToSuperview().multipliedBy(0.5).offset(-5)
-                        make.height.equalTo(view.snp.width)
-                        
-                        if (i - 1) % 2 == 0 {
-                            make.trailing.equalToSuperview()
-                        } else {
-                            make.leading.equalToSuperview()
-                        }
-                    }
-                    break
+                    
+                    make.width.equalToSuperview().multipliedBy(0.5).offset(-5)
+                    make.height.equalTo(view.snp.width)
+                    
+                }
+                
+                if isIndexEven {
+                    lastView = view
                 }
             }
         }
-        
         imagesView.subviews.last?.snp.makeConstraints({ (make) in
             make.bottom.equalToSuperview()
         })
     }
-
 }
