@@ -22,14 +22,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var allUsersData:[User] = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+            if #available(iOS 11.0, *) {
+                make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+                make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
+                make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+                make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
+            } else {
+                make.top.equalTo(topLayoutGuide.snp.bottom)
+                make.leading.equalToSuperview()
+                make.bottom.equalTo(bottomLayoutGuide.snp.top)
+                make.trailing.equalToSuperview()
+            }
         }
         configureTableView()
         ApiClient.getData(URLManager.getURL(offset, limit: limit)) { (result) in
@@ -49,10 +57,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
     }
+    
    
+    func configureTableView() {
+        tableView.register(UserCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.contentMode = .scaleAspectFill
+        tableView.estimatedRowHeight = 300
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
     func reloadTableView() {
         tableView.reloadData()
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allUsersData.count
     }
@@ -72,18 +91,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
-    
-    func configureTableView() {
-        tableView.register(UserCell.self, forCellReuseIdentifier: cellIdentifier)
-        tableView.contentMode = .scaleAspectFill
-        tableView.estimatedRowHeight = 300
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-    
-    
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
@@ -93,6 +100,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             loadMore()
         }
     }
+    
+    
+    // MARK: - Load Data
     
     func loadMore() {
         if !loadMoreStatus && hasMore {

@@ -16,6 +16,7 @@ class UserCell: UITableViewCell {
     let imagesView = UIView()
     
     let offset = 10
+    
     // MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
