@@ -11,13 +11,16 @@ typealias SearchComplete = (Any) -> Void
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
 
-    var loadMoreStatus = true
     let limit = 10
     var offset = 0
+    
     var hasMore = false
-    let tableView = UITableView()
-    var allUsersData:[User] = []
+    var loadMoreStatus = true
+    
     let cellIdentifier = "userInfo"
+    let tableView = UITableView()
+    
+    var allUsersData:[User] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
