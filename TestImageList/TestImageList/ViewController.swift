@@ -7,7 +7,7 @@
 //
 
 import UIKit
-typealias SearchComplete = (DataModel) -> Void
+typealias SearchComplete = (Any) -> Void
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
 
@@ -17,12 +17,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var hasMore = false
     let tableView = UITableView()
     var allUsersData:[User] = []
-    var urlString:URL {
-        get {
-            return URL(string: "http://sd2-hiring.herokuapp.com/api/users?offset=\(offset)&limit=\(limit)")!
-        }
-    }
-    
     let cellIdentifier = "userInfo"
     
     override func viewDidLoad() {
@@ -35,11 +29,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             make.bottom.equalToSuperview()
         }
         configureTableView()
-        ApiClient.getData(self.urlString) { (success) in
-            self.allUsersData = success.data.users
-            self.hasMore = success.data.has_more
-            self.reloadTableView()
-            self.loadMoreStatus = false
+        ApiClient.getData(URLManager.getURL(offset, limit: limit)) { (result) in
+            if let error = result as? Error {
+                let alert = UIAlertController(title: "Alert", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            if let dataModel = ApiClient.parse(data: result as? Data) {
+                self.allUsersData = dataModel.data.users
+                self.hasMore = dataModel.data.has_more
+                self.reloadTableView()
+                self.loadMoreStatus = false
+            }
         }
         
     }
@@ -97,9 +100,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func loadMoreBegin() {
         loadMoreStatus = true
-        DispatchQueue.main.async {
-            ApiClient.getData(self.urlString) { (success) in
-                for (_,elem) in (success.data.users.enumerated()) {
+        ApiClient.getData(URLManager.getURL(offset, limit: limit)) { (result) in
+            
+            if let error = result as? Error {
+                let alert = UIAlertController(title: "Alert", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            if let dataModel = ApiClient.parse(data: result as? Data) {
+                for (_,elem) in (dataModel.data.users.enumerated()) {
                     self.allUsersData.append(elem)
                 }
                 self.loadMoreStatus = false
@@ -107,9 +118,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     }
+    
+    
+}
    
     
     
 
-}
+
 

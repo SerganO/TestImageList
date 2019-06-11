@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		17C4ED5520B3506B704D7782 /* Pods_TestImageList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDB3959A1AD8D64DB65A58E /* Pods_TestImageList.framework */; };
+		EC1A1E5C22AFAB9300E428F6 /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1A1E5B22AFAB9300E428F6 /* URLManager.swift */; };
 		EC26B1D022AA8F1B009628B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC26B1CF22AA8F1B009628B8 /* AppDelegate.swift */; };
 		EC26B1D222AA8F1B009628B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC26B1D122AA8F1B009628B8 /* ViewController.swift */; };
 		EC26B1D522AA8F1B009628B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC26B1D322AA8F1B009628B8 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		0AE039870047C3951E8A6B0D /* Pods-TestImageList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestImageList.release.xcconfig"; path = "Target Support Files/Pods-TestImageList/Pods-TestImageList.release.xcconfig"; sourceTree = "<group>"; };
+		EC1A1E5B22AFAB9300E428F6 /* URLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManager.swift; sourceTree = "<group>"; };
 		EC26B1CC22AA8F1B009628B8 /* TestImageList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestImageList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC26B1CF22AA8F1B009628B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC26B1D122AA8F1B009628B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				ECFAAE4B22AE548D0038E55F /* ApiClient.swift */,
 				ECFAAE5222AE93880038E55F /* UIImageViewExtension.swift */,
 				ECFAAE5422AE948A0038E55F /* CacheManager.swift */,
+				EC1A1E5B22AFAB9300E428F6 /* URLManager.swift */,
 			);
 			path = TestImageList;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				ECFAAE4F22AE87BC0038E55F /* UsersData.swift in Sources */,
 				ECFAAE5522AE948A0038E55F /* CacheManager.swift in Sources */,
 				EC26B20122AAADCC009628B8 /* UserCell.swift in Sources */,
+				EC1A1E5C22AFAB9300E428F6 /* URLManager.swift in Sources */,
 				EC26B1D222AA8F1B009628B8 /* ViewController.swift in Sources */,
 				EC26B1D022AA8F1B009628B8 /* AppDelegate.swift in Sources */,
 				EC26B1FE22AA9942009628B8 /* DataModel.swift in Sources */,

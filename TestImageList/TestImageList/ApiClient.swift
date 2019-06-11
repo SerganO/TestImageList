@@ -10,7 +10,7 @@ import UIKit
 import Alamofire.Swift
 import AlamofireImage
 class ApiClient {
-    static public func getData(_ url : URL?, completion: @escaping SearchComplete ) {
+    /*static public func getData(_ url : URL?, completion: @escaping SearchComplete ) {
         
         if let url = url {
             
@@ -21,7 +21,25 @@ class ApiClient {
                 
             }
         }
-     }
+     }*/
+    
+    static public func getData(_ url : URL?, completion: @escaping SearchComplete) {
+        if let url = url {
+            
+            Alamofire.request(url).validate(statusCode: 200...300).responseData { (response) in
+                switch response.result {
+                    
+                case .success(_):
+                    completion(response.result.value as Any)
+                case .failure(_):
+                    completion(response.result.value as Any)
+                }
+                
+                
+                
+            }
+        }
+    }
     
     static func parse(data: Data?) -> DataModel? {
         guard let data = data else {  return nil }
