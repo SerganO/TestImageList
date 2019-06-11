@@ -14,7 +14,7 @@ class ApiClient {
     static public func getData(_ url : URL?, completion: @escaping SearchComplete) {
         if let url = url {
             
-            Alamofire.request(url).validate(statusCode: 200...300).responseData { (response) in
+            Alamofire.request(url).validate(statusCode: 200..<300).responseData { (response) in
                 switch response.result {
                     
                 case .success(_):
