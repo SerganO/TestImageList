@@ -10,18 +10,6 @@ import UIKit
 import Alamofire.Swift
 import AlamofireImage
 class ApiClient {
-    /*static public func getData(_ url : URL?, completion: @escaping SearchComplete ) {
-        
-        if let url = url {
-            
-            Alamofire.request(url).responseData { (response) in
-                if let data = parse(data: response.result.value)  {
-                    completion(data)
-                }
-                
-            }
-        }
-     }*/
     
     static public func getData(_ url : URL?, completion: @escaping SearchComplete) {
         if let url = url {
@@ -34,8 +22,6 @@ class ApiClient {
                 case .failure(_):
                     completion(response.result.value as Any)
                 }
-                
-                
                 
             }
         }

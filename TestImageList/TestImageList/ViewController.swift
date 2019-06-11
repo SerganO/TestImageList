@@ -40,21 +40,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
         configureTableView()
-        ApiClient.getData(URLManager.getURL(offset, limit: limit)) { (result) in
-            if let error = result as? Error {
-                let alert = UIAlertController(title: "Alert", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                return
-            }
-            
-            if let dataModel = ApiClient.parse(data: result as? Data) {
-                self.allUsersData = dataModel.data.users
-                self.hasMore = dataModel.data.has_more
-                self.reloadTableView()
-                self.loadMoreStatus = false
-            }
-        }
+        loadMoreBegin()
         
     }
     
@@ -119,6 +105,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 let alert = UIAlertController(title: "Alert", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+                self.loadMoreStatus = false
                 return
             }
             
@@ -126,9 +113,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 for (_,elem) in (dataModel.data.users.enumerated()) {
                     self.allUsersData.append(elem)
                 }
-                self.loadMoreStatus = false
+                self.hasMore = dataModel.data.has_more
+                
                 self.reloadTableView()
             }
+            self.loadMoreStatus = false
         }
     }
     
